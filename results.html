@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis Results</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Stock Analysis Results for {{ ticker }}</h1>
+        <div class="mb-3">
+            <dl class="row">
+                <dt class="col-sm-3">Max Price Date</dt>
+                <dd class="col-sm-9">{{ max_price[0].strftime('%Y-%m-%d') }}</dd>
+                
+                <dt class="col-sm-3">Max Price Value</dt>
+                <dd class="col-sm-9">${{ '%.2f'|format(max_price[4]) }}</dd>
+                
+                <dt class="col-sm-3">Min Price Date</dt>
+                <dd class="col-sm-9">{{ min_price[0].strftime('%Y-%m-%d') }}</dd>
+                
+                <dt class="col-sm-3">Min Price Value</dt>
+                <dd class="col-sm-9">${{ '%.2f'|format(min_price[4]) }}</dd>
+                
+                <dt class="col-sm-3">Average Price</dt>
+                <dd class="col-sm-9">${{ '%.2f'|format(avg_price) }}</dd>
+            </dl>
+        </div>
+        <div class="mb-3">
+            <img src="data:image/png;base64,{{ image_base64 }}" alt="Stock Chart" class="img-fluid">
+        </div>
+        <div class="text-center">
+            <a href="{{ url_for('home') }}" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+    <!-- 引入 Bootstrap JS 依赖 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
